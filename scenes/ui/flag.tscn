@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b7oghfi645ew2"]
+
+[ext_resource type="Texture2D" uid="uid://efxl1c5qxkm7" path="res://assets/sprites/flag.png" id="1_1c76n"]
+
+[node name="Flag" type="Node2D" unique_id=1765963365]
+z_index = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=711086722]
+position = Vector2(2.5, -4.5)
+texture = ExtResource("1_1c76n")

@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bm4h2esuqar6t"]
+
+[ext_resource type="Shader" uid="uid://xqx0kxg7gtpm" path="res://scenes/map/border.gdshader" id="1_1onfp"]
+
+[resource]
+shader = ExtResource("1_1onfp")

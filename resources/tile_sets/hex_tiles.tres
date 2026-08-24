@@ -1,11 +1,12 @@
 [gd_resource type="TileSet" format=3 uid="uid://trry3a3xfbpw"]
 
 [ext_resource type="Texture2D" uid="uid://b3gmws1mm4s0p" path="res://assets/tilemaps/isometric_atlas.png" id="1_pgl88"]
+[ext_resource type="Texture2D" uid="uid://sa15onsvfjvs" path="res://assets/tilemaps/isometric_tiles_2.png" id="2_oqgru"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0ejg"]
 texture = ExtResource("1_pgl88")
-separation = Vector2i(0, 8)
-texture_region_size = Vector2i(26, 26)
+separation = Vector2i(0, 9)
+texture_region_size = Vector2i(26, 25)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -19,9 +20,23 @@ texture_region_size = Vector2i(26, 26)
 6:0/0 = 0
 4:1/0 = 0
 5:1/0 = 0
+7:1/0 = 0
+9:1/0 = 0
+8:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgl88"]
+texture = ExtResource("2_oqgru")
+texture_region_size = Vector2i(26, 27)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 1)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 1)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 1)
 
 [resource]
 tile_shape = 3
 tile_layout = 5
 tile_size = Vector2i(26, 25)
 sources/0 = SubResource("TileSetAtlasSource_c0ejg")
+sources/1 = SubResource("TileSetAtlasSource_pgl88")

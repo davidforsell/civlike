@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c5j5g05ihaeku"]
+
+[ext_resource type="Theme" uid="uid://b5nqnkdabevlt" path="res://themes/default.tres" id="1_6m41x"]
+[ext_resource type="Script" uid="uid://figrs08ql1xd" path="res://scenes/ui/damage_popup.gd" id="1_gufe0"]
+
+[node name="DamagePopup" type="Label" unique_id=702002745]
+z_index = 100
+theme = ExtResource("1_6m41x")
+script = ExtResource("1_gufe0")

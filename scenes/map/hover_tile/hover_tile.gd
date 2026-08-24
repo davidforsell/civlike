@@ -16,6 +16,11 @@ var hex_coords: Vector2i = Vector2i(1000, 1000)
 var paused: bool = false
 var tween: Tween = create_tween()
 
+var atlas_source_0 = preload("res://assets/tilemaps/isometric_atlas.png")
+var atlas_source_1 = preload("res://assets/tilemaps/isometric_tiles_2.png")
+
+var current_atlas_source := 0
+
 func _ready() -> void:
 	base_y = position.y
 
@@ -25,7 +30,20 @@ func _process(delta: float):
 	bob_time += delta
 	position.y = base_y + sin(bob_time * bob_speed) * bob_height
 
-func set_atlas_position(coords: Vector2i):
+func update_source():
+	var texture := sprite.texture as AtlasTexture
+	match current_atlas_source:
+		0:
+			texture.atlas = atlas_source_0
+			sprite.position.y += 2
+		1:
+			texture.atlas = atlas_source_1
+			sprite.position.y -= 2
+
+func set_atlas_position(coords: Vector2i, source: int):
+	if source != current_atlas_source:
+		current_atlas_source = source
+		update_source()
 	atlas_coords = coords
 	var texture := sprite.texture as AtlasTexture
 	texture.region.position.x = coords.x * tile_width

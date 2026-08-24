@@ -19,5 +19,7 @@ func _ready() -> void:
 		texture_rect.custom_minimum_size.y = icon_size
 
 func update():
+	if not is_node_ready():
+		await ready
 	texture_rect.texture = icon
 	label.text = text

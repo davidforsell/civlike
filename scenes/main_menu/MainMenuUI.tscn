@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://d2m68apnpg2e"]
+
+[ext_resource type="Script" uid="uid://602pajol0l7u" path="res://scenes/main_menu/main_menu_ui.gd" id="1_xif8s"]
+
+[node name="MainMenuUi" type="Control" unique_id=1126974255]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xif8s")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1573701286]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=997218115]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuickStart" type="Button" parent="HBoxContainer" unique_id=527086843]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quick Start"
+
+[node name="Host" type="Button" parent="HBoxContainer" unique_id=590845188]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host (LAN only)"
+
+[node name="Join" type="Button" parent="HBoxContainer" unique_id=2040441624]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join (LAN only)"
+
+[node name="Waiting" type="Label" parent="." unique_id=1383830700]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Awaiting Host Start..."
+
+[node name="Start" type="Button" parent="." unique_id=350104609]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Start"
+
+[connection signal="pressed" from="HBoxContainer/Host" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="HBoxContainer/Join" to="." method="_on_client_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

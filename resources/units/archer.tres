@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UnitDefinition" format=3 uid="uid://315d2c8yx5tu"]
+
+[ext_resource type="Script" uid="uid://cykt3pc6de5d6" path="res://resources/units/unit_definition.gd" id="1_nar3q"]
+[ext_resource type="Texture2D" uid="uid://ba2ohb1u7j1e7" path="res://assets/sprites/train_army.png" id="2_ln5bf"]
+
+[resource]
+script = ExtResource("1_nar3q")
+texture = ExtResource("2_ln5bf")
+unit_type = 2
+base_damage = 3
+base_hp = 5
+base_defense = 1
+base_stamina = 2
+base_money_cost = 2
+base_population_cost = 1
+metadata/_custom_type_script = "uid://cykt3pc6de5d6"

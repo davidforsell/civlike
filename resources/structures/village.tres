@@ -1,9 +1,13 @@
 [gd_resource type="Resource" script_class="StructureDefinition" format=3 uid="uid://dpy5lg7oarrx4"]
 
 [ext_resource type="Script" uid="uid://btmah3rff73p0" path="res://resources/structures/structure_definition.gd" id="1_7mhi5"]
-[ext_resource type="Texture2D" uid="uid://cwbfa846imwfo" path="res://assets/sprites/vilalge.png" id="2_2n3hb"]
+[ext_resource type="Texture2D" uid="uid://cwbfa846imwfo" path="res://assets/sprites/village.png" id="2_2n3hb"]
 
 [resource]
 script = ExtResource("1_7mhi5")
 texture = ExtResource("2_2n3hb")
+starting_population = 5
+starting_money = 10
+base_defense = 1
+base_hp = 5
 metadata/_custom_type_script = "uid://btmah3rff73p0"

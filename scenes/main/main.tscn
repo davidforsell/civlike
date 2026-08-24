@@ -7,20 +7,18 @@
 [ext_resource type="Script" uid="uid://sgswkjigeypr" path="res://resources/movables/movable_definition.gd" id="3_l3cfh"]
 [ext_resource type="Resource" uid="uid://dpy5lg7oarrx4" path="res://resources/structures/village.tres" id="3_yyfjg"]
 [ext_resource type="Resource" uid="uid://d06b5laipv20e" path="res://resources/movables/troops.tres" id="4_6q06x"]
+[ext_resource type="Script" uid="uid://cykt3pc6de5d6" path="res://resources/units/unit_definition.gd" id="4_7dg2i"]
 [ext_resource type="PackedScene" uid="uid://rh04hfxs04hl" path="res://scenes/map/hex_borders/hex_borders.tscn" id="4_yyfjg"]
-[ext_resource type="Script" uid="uid://drhr64g7tn2p" path="res://resources/tiles/hex_tile_definition.gd" id="7_62f45"]
-[ext_resource type="Resource" uid="uid://cvw5c4igrmey7" path="res://resources/tiles/GrassTile.tres" id="8_6g32y"]
-[ext_resource type="Resource" uid="uid://7c5gq7schl8w" path="res://resources/tiles/WaterTile.tres" id="9_5nwjq"]
+[ext_resource type="Resource" uid="uid://brb27n601e44s" path="res://resources/units/swordsman.tres" id="5_08tbl"]
+[ext_resource type="Resource" uid="uid://315d2c8yx5tu" path="res://resources/units/archer.tres" id="6_08tbl"]
+[ext_resource type="Resource" uid="uid://brlkeea4hsbr1" path="res://resources/units/pikeman.tres" id="7_gohbf"]
 [ext_resource type="Resource" uid="uid://dxp3x4xl211iw" path="res://resources/movables/boat.tres" id="9_r1bmu"]
-[ext_resource type="Resource" uid="uid://eetlr6v2nl3a" path="res://resources/tiles/SnowTile.tres" id="10_g2upo"]
+[ext_resource type="Material" uid="uid://bm4h2esuqar6t" path="res://overlay_shader.tres" id="10_08tbl"]
 [ext_resource type="PackedScene" uid="uid://bcyy28vg407lq" path="res://scenes/ui/pick_colour/pick_color.tscn" id="12_blune"]
 [ext_resource type="FontFile" uid="uid://bguriayplp5qj" path="res://assets/fonts/ithaca-font/Ithaca-LVB75.ttf" id="13_th5th"]
 [ext_resource type="PackedScene" uid="uid://bj3pcpku2emf6" path="res://scenes/ui/button.tscn" id="14_38d3o"]
-[ext_resource type="Texture2D" uid="uid://d0sjbqoutk0jb" path="res://assets/sprites/hex_borders.png" id="15_i6fjx"]
 [ext_resource type="Texture2D" uid="uid://bunwwgrx3wgee" path="res://assets/sprites/info_icon.png" id="15_raeie"]
-[ext_resource type="Texture2D" uid="uid://crqpri1mb1ccy" path="res://assets/sprites/hex_borders_hovered.png" id="16_7dg2i"]
 [ext_resource type="Texture2D" uid="uid://cqkc1yqqkaers" path="res://assets/sprites/info_icon_pressed.png" id="16_nvumn"]
-[ext_resource type="Texture2D" uid="uid://d3j8mjtibxd1l" path="res://assets/sprites/hex_borders_pressed.png" id="17_08tbl"]
 [ext_resource type="Texture2D" uid="uid://ba2ohb1u7j1e7" path="res://assets/sprites/train_army.png" id="18_m4h2d"]
 [ext_resource type="PackedScene" uid="uid://cicdywlp6p4py" path="res://scenes/ui/enter_structure_name/enter_structure_name.tscn" id="19_necax"]
 [ext_resource type="Texture2D" uid="uid://dxiuvhbmhtojn" path="res://assets/sprites/train_army_pressed.png" id="19_p8abn"]
@@ -31,25 +29,46 @@
 [ext_resource type="Texture2D" uid="uid://cedutlh5p4md" path="res://assets/sprites/info_icon_hovered.png" id="23_37hlw"]
 [ext_resource type="PackedScene" uid="uid://ys17clyxklv0" path="res://scenes/ui/panel/panel.tscn" id="23_p8abn"]
 [ext_resource type="PackedScene" uid="uid://db647sgu2mpaa" path="res://scenes/ui/title.tscn" id="23_s17dp"]
+[ext_resource type="Script" uid="uid://cfxq2b1dfqj2e" path="res://scenes/main/structure_buttons.gd" id="23_wcrab"]
 [ext_resource type="PackedScene" uid="uid://dlipuu7djidim" path="res://scenes/ui/button_label.tscn" id="24_s17dp"]
 [ext_resource type="Texture2D" uid="uid://dy85lf771gsa8" path="res://assets/sprites/upgrade_button.png" id="25_0bhws"]
 [ext_resource type="Texture2D" uid="uid://cc3fu4dpnaex5" path="res://assets/sprites/upgrade_button_hover.png" id="26_62atk"]
 [ext_resource type="Texture2D" uid="uid://4egio5xpku0b" path="res://assets/sprites/upgrade_button_pressed.png" id="27_i7in8"]
 [ext_resource type="Script" uid="uid://tlxd2hwce0a7" path="res://scenes/main/structure_name.gd" id="28_62atk"]
-[ext_resource type="Theme" uid="uid://b5nqnkdabevlt" path="res://themes/pick_colour.tres" id="28_i7in8"]
+[ext_resource type="Theme" uid="uid://b5nqnkdabevlt" path="res://themes/default.tres" id="28_i7in8"]
 [ext_resource type="Texture2D" uid="uid://cb8qgd2sfg0qn" path="res://assets/sprites/edit_button.png" id="30_ii537"]
 [ext_resource type="Texture2D" uid="uid://b3m5wi60ew8j7" path="res://assets/sprites/edit_button_hovered.png" id="31_rofvo"]
 [ext_resource type="Texture2D" uid="uid://bahnqo06p1k71" path="res://assets/sprites/edit_button_pressed.png" id="32_tbnf8"]
 [ext_resource type="Script" uid="uid://b5ggjbph3o4q6" path="res://scenes/main/follow_cursor.gd" id="33_rofvo"]
 [ext_resource type="PackedScene" uid="uid://dnwua1dkos0t3" path="res://scenes/ui/army_info.tscn" id="33_tbnf8"]
-[ext_resource type="Script" uid="uid://cbvsw4aaf2ku" path="res://scenes/ui/enter_structure_name/town_name_generator.gd" id="40_6g32y"]
+[ext_resource type="PackedScene" uid="uid://gannlbojvxrg" path="res://scenes/ui/icon_label.tscn" id="35_wcrab"]
+[ext_resource type="Texture2D" uid="uid://bhql1gulhd0n0" path="res://assets/sprites/coin.png" id="36_gohbf"]
+[ext_resource type="Texture2D" uid="uid://4mp6ikmvxntm" path="res://assets/sprites/person.png" id="37_jucdw"]
+[ext_resource type="Script" uid="uid://67yommmpcg50" path="res://scenes/ui/panel/structure_info_panel.gd" id="40_f4j1x"]
+[ext_resource type="Texture2D" uid="uid://fovyugaq1pqx" path="res://assets/sprites/panel_background.png" id="45_f4j1x"]
+[ext_resource type="Texture2D" uid="uid://buow7ga3og2hj" path="res://assets/sprites/turn_timer_icon.png" id="45_jucdw"]
+[ext_resource type="Texture2D" uid="uid://eo8vwh33na5o" path="res://assets/sprites/turn_timer_icon_hovered.png" id="46_6miv3"]
+[ext_resource type="Texture2D" uid="uid://dmnnysfrj12ji" path="res://assets/sprites/turn_timer_icon_pressed.png" id="47_yisfj"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ii537"]
 color = Color(0.78352344, 0.7835234, 0.7835234, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wcrab"]
+texture = ExtResource("45_f4j1x")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+modulate_color = Color(0.16924539, 0.16924524, 0.16924536, 0.9137255)
+
 [node name="Main" type="Node2D" unique_id=21704347]
 script = ExtResource("1_6q06x")
 structure_definitions = Array[ExtResource("2_hujxm")]([ExtResource("3_yyfjg")])
+unit_definitions = Dictionary[int, ExtResource("4_7dg2i")]({
+1: ExtResource("5_08tbl"),
+2: ExtResource("6_08tbl"),
+3: ExtResource("7_gohbf")
+})
 
 [node name="HexBorders" parent="." unique_id=857492293 node_paths=PackedStringArray("map") instance=ExtResource("4_yyfjg")]
 scale = Vector2(8, 8)
@@ -57,30 +76,17 @@ map = NodePath("../HexMap")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=159356535 node_paths=PackedStringArray("map")]
 script = ExtResource("1_hyk8p")
+min_zoom = 0.15
 max_zoom = 2.0
 map = NodePath("../HexMap")
+hex_overlay_material = ExtResource("10_08tbl")
 
 [node name="HexMap" parent="." unique_id=869536201 node_paths=PackedStringArray("hex_borders") instance=ExtResource("2_iuonh")]
 scale = Vector2(8, 8)
-tiles = Array[ExtResource("7_62f45")]([ExtResource("8_6g32y"), ExtResource("9_5nwjq"), ExtResource("10_g2upo")])
 movables_definitions = Array[ExtResource("3_l3cfh")]([ExtResource("4_6q06x"), ExtResource("9_r1bmu")])
 hex_borders = NodePath("../HexBorders")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933161837]
-
-[node name="BorderOverlayButton" parent="CanvasLayer" unique_id=1837361506 instance=ExtResource("14_38d3o")]
-custom_minimum_size = Vector2(60, 60)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -60.0
-offset_right = 0.0
-offset_bottom = 60.0
-grow_horizontal = 0
-texture = ExtResource("15_i6fjx")
-button_normal = ExtResource("15_i6fjx")
-button_hovered = ExtResource("16_7dg2i")
-button_pressed = ExtResource("17_08tbl")
 
 [node name="PickColor" type="Control" parent="CanvasLayer" unique_id=1838582913]
 visible = false
@@ -107,10 +113,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
 
 [node name="PickColor" parent="CanvasLayer/PickColor/MarginContainer" unique_id=47746486 instance=ExtResource("12_blune")]
 layout_mode = 2
@@ -126,7 +132,6 @@ theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 
 [node name="StructureButtons" type="HBoxContainer" parent="CanvasLayer" unique_id=1082235677]
-visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -134,9 +139,12 @@ anchor_bottom = 1.0
 offset_top = -12.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 alignment = 2
+script = ExtResource("23_wcrab")
 
 [node name="BuildButton" type="TextureButton" parent="CanvasLayer/StructureButtons" unique_id=898051511]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("21_37hlw")
@@ -145,6 +153,7 @@ texture_hover = ExtResource("23_0bhws")
 stretch_mode = 5
 
 [node name="TrainButton" type="TextureButton" parent="CanvasLayer/StructureButtons" unique_id=1105743456]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("18_m4h2d")
@@ -153,6 +162,7 @@ texture_hover = ExtResource("20_s17dp")
 stretch_mode = 5
 
 [node name="InfoButton" type="TextureButton" parent="CanvasLayer/StructureButtons" unique_id=137750881]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("15_raeie")
@@ -197,22 +207,79 @@ panel_button = NodePath("../StructureButtons/TrainButton")
 layout_mode = 2
 text = "Train"
 
-[node name="Swordsmen" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(291166867, 611193045) index="1" unique_id=1919401900 instance=ExtResource("24_s17dp")]
+[node name="Swordsmen" type="HBoxContainer" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(291166867, 611193045) index="1" unique_id=1468694694]
 layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Money" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Swordsmen" unique_id=1320217021 instance=ExtResource("35_wcrab")]
+layout_mode = 2
+icon = ExtResource("36_gohbf")
+text = "2"
+font_size = 32
+icon_size = 16
+
+[node name="Population" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Swordsmen" unique_id=139971702 instance=ExtResource("35_wcrab")]
+layout_mode = 2
+icon = ExtResource("37_jucdw")
+text = "1"
+font_size = 32
+icon_size = 10
+
+[node name="Swordsmen" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Swordsmen" unique_id=1919401900 instance=ExtResource("24_s17dp")]
+layout_mode = 2
+size_flags_horizontal = 3
 button_texture = ExtResource("18_m4h2d")
 button_hovered_texture = ExtResource("20_s17dp")
 button_pressed_texture = ExtResource("19_p8abn")
 text = "Swordsmen"
 
-[node name="Archers" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(291166867, 611193045) index="2" unique_id=888647297 instance=ExtResource("24_s17dp")]
+[node name="Archers" type="HBoxContainer" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(291166867, 611193045) index="2" unique_id=518102100]
 layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Money" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Archers" unique_id=286195073 instance=ExtResource("35_wcrab")]
+layout_mode = 2
+icon = ExtResource("36_gohbf")
+text = "2"
+font_size = 32
+icon_size = 16
+
+[node name="Population" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Archers" unique_id=905268917 instance=ExtResource("35_wcrab")]
+layout_mode = 2
+icon = ExtResource("37_jucdw")
+text = "1"
+font_size = 32
+icon_size = 10
+
+[node name="Archers" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Archers" unique_id=888647297 instance=ExtResource("24_s17dp")]
+layout_mode = 2
+size_flags_horizontal = 3
 button_texture = ExtResource("18_m4h2d")
 button_hovered_texture = ExtResource("20_s17dp")
 button_pressed_texture = ExtResource("19_p8abn")
 text = "Archers"
 
-[node name="Pikemen" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(291166867, 611193045) index="3" unique_id=432157498 instance=ExtResource("24_s17dp")]
+[node name="Pikemen" type="HBoxContainer" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(291166867, 611193045) index="3" unique_id=2042547856]
 layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Money" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Pikemen" unique_id=1682682667 instance=ExtResource("35_wcrab")]
+layout_mode = 2
+icon = ExtResource("36_gohbf")
+text = "2"
+font_size = 32
+icon_size = 16
+
+[node name="Population" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Pikemen" unique_id=578775049 instance=ExtResource("35_wcrab")]
+layout_mode = 2
+icon = ExtResource("37_jucdw")
+text = "1"
+font_size = 32
+icon_size = 10
+
+[node name="Pikemen" parent="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Pikemen" unique_id=432157498 instance=ExtResource("24_s17dp")]
+layout_mode = 2
+size_flags_horizontal = 3
 button_texture = ExtResource("18_m4h2d")
 button_hovered_texture = ExtResource("20_s17dp")
 button_pressed_texture = ExtResource("19_p8abn")
@@ -231,6 +298,7 @@ text = "More coming soon"
 
 [node name="InfoPanel" parent="CanvasLayer" unique_id=1898688431 node_paths=PackedStringArray("panel_button") instance=ExtResource("23_p8abn")]
 visible = false
+script = ExtResource("40_f4j1x")
 panel_button = NodePath("../StructureButtons/InfoButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InfoPanel/MarginContainer/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(1898688431, 611193045) index="0" unique_id=335536041]
@@ -264,6 +332,7 @@ anchor_bottom = 1.0
 offset_top = -12.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="InfoButton" type="TextureButton" parent="CanvasLayer/ArmyButtons" unique_id=2018965336]
 custom_minimum_size = Vector2(50, 50)
@@ -294,40 +363,79 @@ text = "Army Info"
 layout_mode = 2
 panel = NodePath("../../../..")
 
+[node name="EndTurnButton" parent="CanvasLayer" unique_id=1837361506 instance=ExtResource("14_38d3o")]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -114.0
+offset_right = -35.0
+offset_bottom = -61.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("45_jucdw")
+button_normal = ExtResource("45_jucdw")
+button_hovered = ExtResource("46_6miv3")
+button_pressed = ExtResource("47_yisfj")
+
+[node name="BotTurnPanel" type="Panel" parent="CanvasLayer" unique_id=1333381012]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = 184.0
+offset_right = 92.5
+offset_bottom = 277.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("28_i7in8")
+theme_override_styles/panel = SubResource("StyleBoxTexture_wcrab")
+
+[node name="Label" type="Label" parent="CanvasLayer/BotTurnPanel" unique_id=1070471546]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.81960785)
+text = "Running bot turn..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FollowCursor" type="Sprite2D" parent="." unique_id=2099658750]
 visible = false
 z_index = 100
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 texture = ExtResource("18_m4h2d")
 script = ExtResource("33_rofvo")
 
-[node name="TownNameGenerator" type="Node" parent="." unique_id=1731500900]
-script = ExtResource("40_6g32y")
-metadata/_custom_type_script = "uid://cbvsw4aaf2ku"
-
-[connection signal="pressed" from="CanvasLayer/BorderOverlayButton" to="." method="_on_border_overlay_button_pressed"]
 [connection signal="color_picked" from="CanvasLayer/PickColor/MarginContainer/PickColor" to="." method="_on_pick_color_color_picked"]
 [connection signal="pressed" from="CanvasLayer/StructureButtons/BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StructureButtons/InfoButton" to="." method="_on_info_button_pressed"]
-[connection signal="name_submitted" from="CanvasLayer/EnterStructureName" to="." method="_on_enter_structure_name_name_submitted"]
 [connection signal="enter" from="CanvasLayer/BuildPanel" to="." method="_on_panel_enter"]
 [connection signal="exit" from="CanvasLayer/BuildPanel" to="." method="_on_panel_exit"]
 [connection signal="button_pressed" from="CanvasLayer/BuildPanel/MarginContainer/PanelContainer/VBoxContainer/upgrade_button" to="." method="_structure_upgade_pressed"]
 [connection signal="button_pressed" from="CanvasLayer/BuildPanel/MarginContainer/PanelContainer/VBoxContainer/upgrade_button" to="CanvasLayer/BuildPanel" method="close"]
 [connection signal="enter" from="CanvasLayer/TrainPanel" to="." method="_on_panel_enter"]
 [connection signal="exit" from="CanvasLayer/TrainPanel" to="." method="_on_panel_exit"]
-[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Swordsmen" to="CanvasLayer/TrainPanel" method="close"]
-[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Swordsmen" to="." method="_on_train_troop_button_pressed" binds= [0]]
-[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Archers" to="CanvasLayer/TrainPanel" method="close"]
-[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Archers" to="." method="_on_train_troop_button_pressed" binds= [1]]
-[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Pikemen" to="CanvasLayer/TrainPanel" method="close"]
-[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Pikemen" to="." method="_on_train_troop_button_pressed" binds= [2]]
+[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Swordsmen/Swordsmen" to="CanvasLayer/TrainPanel" method="close"]
+[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Archers/Archers" to="CanvasLayer/TrainPanel" method="close"]
+[connection signal="button_pressed" from="CanvasLayer/TrainPanel/MarginContainer/PanelContainer/VBoxContainer/Pikemen/Pikemen" to="CanvasLayer/TrainPanel" method="close"]
 [connection signal="enter" from="CanvasLayer/InfoPanel" to="." method="_on_panel_enter"]
 [connection signal="enter" from="CanvasLayer/InfoPanel" to="CanvasLayer/InfoPanel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/structure_name" method="_on_info_panel_enter"]
 [connection signal="exit" from="CanvasLayer/InfoPanel" to="." method="_on_panel_exit"]
 [connection signal="button_pressed" from="CanvasLayer/InfoPanel/MarginContainer/PanelContainer/VBoxContainer/ChangeName" to="." method="_on_change_name_button_pressed"]
 [connection signal="button_pressed" from="CanvasLayer/InfoPanel/MarginContainer/PanelContainer/VBoxContainer/ChangeName" to="CanvasLayer/InfoPanel" method="close"]
 [connection signal="pressed" from="CanvasLayer/ArmyButtons/InfoButton" to="CanvasLayer/ArmyPanels/ArmyInfoPanel" method="_on_panel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 
 [editable path="CanvasLayer/BuildPanel"]
 [editable path="CanvasLayer/TrainPanel"]

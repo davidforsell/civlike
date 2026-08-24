@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HexTileDefinition" format=3 uid="uid://c203ndbh2gno5"]
+
+[ext_resource type="Script" uid="uid://drhr64g7tn2p" path="res://resources/tiles/hex_tile_definition.gd" id="1_gvjh4"]
+
+[resource]
+script = ExtResource("1_gvjh4")
+id = 3
+atlas_coords = Vector2i(1, 0)
+atlas_source = 1
+metadata/_custom_type_script = "uid://drhr64g7tn2p"

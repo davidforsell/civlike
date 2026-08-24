@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dobhdx7ob0n8i"]
 
 [ext_resource type="Script" uid="uid://cfbbagmt6j1yc" path="res://scenes/structures/structure_label.gd" id="1_ppd3u"]
-[ext_resource type="Theme" uid="uid://vmk18jjueotx" path="res://themes/pixel_theme.tres" id="2_s5ovw"]
+[ext_resource type="Theme" uid="uid://b5nqnkdabevlt" path="res://themes/default.tres" id="2_8l1xc"]
 [ext_resource type="FontFile" uid="uid://bguriayplp5qj" path="res://assets/fonts/ithaca-font/Ithaca-LVB75.ttf" id="3_5gpus"]
 [ext_resource type="PackedScene" uid="uid://gannlbojvxrg" path="res://scenes/ui/icon_label.tscn" id="4_8l1xc"]
 [ext_resource type="Texture2D" uid="uid://bhql1gulhd0n0" path="res://assets/sprites/coin.png" id="4_824ku"]
@@ -26,7 +26,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("2_s5ovw")
+theme = ExtResource("2_8l1xc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=352308732]
 layout_mode = 2

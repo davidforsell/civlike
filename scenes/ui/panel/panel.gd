@@ -13,6 +13,7 @@ func _ready() -> void:
 func close():
 	exit.emit()
 	visible = false
+	_on_exit()
 
 func _on_bg_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("select"):
@@ -25,3 +26,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_panel_button_pressed():
 	enter.emit()
 	visible = true
+	_on_enter()
+
+func _on_enter():
+	pass
+
+func _on_exit():
+	pass

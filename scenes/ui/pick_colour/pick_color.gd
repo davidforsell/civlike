@@ -2,7 +2,7 @@ class_name PickColor
 extends Control
 
 @onready var color_box_scene = preload("res://scenes/ui/pick_colour/color_box.tscn")
-@onready var grid_container: GridContainer = $PanelContainer/VBoxContainer/PanelContainer/GridContainer
+@onready var grid_container: GridContainer = $PanelContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer
 
 signal color_picked(color: Color)
 

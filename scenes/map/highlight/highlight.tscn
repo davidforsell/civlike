@@ -8,6 +8,6 @@ atlas = ExtResource("1_0ch1v")
 region = Rect2(52, 34, 26, 24)
 
 [node name="Highlight" type="Sprite2D" unique_id=1904428297]
-z_index = 5
+z_index = 1
 texture = SubResource("AtlasTexture_k12nl")
 script = ExtResource("2_puvb8")

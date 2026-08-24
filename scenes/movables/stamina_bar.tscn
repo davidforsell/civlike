@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dmrt8mniyffs2"]
+
+[ext_resource type="Texture2D" uid="uid://bc2jyim04dwsn" path="res://assets/sprites/stamina_border.png" id="1_52yj1"]
+[ext_resource type="Script" uid="uid://bi54gv5les01p" path="res://scenes/movables/stamina_bar.gd" id="2_t3xmn"]
+[ext_resource type="Texture2D" uid="uid://be1gejl3n4oyw" path="res://assets/sprites/stamina.png" id="3_c8mq3"]
+
+[node name="StaminaBar" type="Sprite2D" unique_id=1243729735]
+texture = ExtResource("1_52yj1")
+script = ExtResource("2_t3xmn")
+
+[node name="Bar" type="Sprite2D" parent="." unique_id=709289673]
+position = Vector2(0, 4)
+texture = ExtResource("3_c8mq3")
+offset = Vector2(0, -4)

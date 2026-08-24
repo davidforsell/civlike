@@ -1,5 +1,4 @@
 extends Node
-class_name TownNameGenerator
 
 var used_names: Dictionary = {}
 
@@ -29,10 +28,10 @@ func load_source_names(file_path: String) -> Array[String]:
 		return names
 
 	while not file.eof_reached():
-		var name := file.get_line().strip_edges()
+		var read_name := file.get_line().strip_edges()
 
-		if not name.is_empty():
-			names.append(name)
+		if not read_name.is_empty():
+			names.append(read_name)
 
 	file.close()
 
@@ -43,11 +42,11 @@ func build_chain(names: Array[String]) -> Dictionary:
 	var new_chain: Dictionary = {}
 
 	for town_name in names:
-		var name := "^" + town_name.to_lower() + "$"
+		var new_name := "^" + town_name.to_lower() + "$"
 
-		for i in range(name.length() - 2):
-			var pair := name.substr(i, 2)
-			var next_character := name[i + 2]
+		for i in range(new_name.length() - 2):
+			var pair := new_name.substr(i, 2)
+			var next_character := new_name[i + 2]
 
 			if not new_chain.has(pair):
 				new_chain[pair] = []

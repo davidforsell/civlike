@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://d00mloahymb7k" path="res://scenes/map/hex_borders/border_line.gd" id="1_0k2w6"]
 
 [node name="BorderLine" type="Node2D" unique_id=897945965]
-z_index = 10
+z_index = 2
+y_sort_enabled = true
 script = ExtResource("1_0k2w6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1441874415]

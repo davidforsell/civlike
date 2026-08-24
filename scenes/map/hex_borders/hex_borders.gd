@@ -37,7 +37,12 @@ func draw_border(border: Border):
 			if not hex + dir in border.contents:
 				draw_border_line(hex, dir, border.color)
 
+func update_borders():
+	clear_borders()
+	draw_all_player_borders()
+
 func draw_all_player_borders():
-	for player in GameState.players:
+	for player_id in GameState.players:
+		var player := GameState.player_datas[player_id]
 		for structure in player.owned_structures:
 			draw_border(structure.border)

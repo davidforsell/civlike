@@ -4,22 +4,45 @@
 [ext_resource type="Script" uid="uid://drhr64g7tn2p" path="res://resources/tiles/hex_tile_definition.gd" id="2_51d80"]
 [ext_resource type="TileSet" uid="uid://trry3a3xfbpw" path="res://resources/tile_sets/hex_tiles.tres" id="2_eqyvv"]
 [ext_resource type="Resource" uid="uid://cvw5c4igrmey7" path="res://resources/tiles/GrassTile.tres" id="3_mbwj7"]
+[ext_resource type="Resource" uid="uid://cpeaiuap0f8qg" path="res://resources/tiles/EmptyTile.tres" id="3_s4gtt"]
 [ext_resource type="Resource" uid="uid://7c5gq7schl8w" path="res://resources/tiles/WaterTile.tres" id="4_7i2la"]
+[ext_resource type="Resource" uid="uid://eetlr6v2nl3a" path="res://resources/tiles/SnowTile.tres" id="5_ck5le"]
+[ext_resource type="Resource" uid="uid://c203ndbh2gno5" path="res://resources/tiles/MountainTile.tres" id="6_8xkxa"]
 [ext_resource type="PackedScene" uid="uid://cwtv6tugm1q3f" path="res://scenes/map/hover_tile/hover_tile.tscn" id="6_ropgo"]
-[ext_resource type="Shader" uid="uid://xqx0kxg7gtpm" path="res://scenes/map/border.gdshader" id="7_pyay8"]
+[ext_resource type="Resource" uid="uid://cbr8hi5tv877k" path="res://resources/tiles/ForestTile.tres" id="7_mie45"]
+[ext_resource type="Resource" uid="uid://dmwkqh8pew7np" path="res://resources/tiles/RockTile.tres" id="8_c7emn"]
 [ext_resource type="Script" uid="uid://cldy5bwvkh0kk" path="res://scenes/map/borders_tilemap_layer.gd" id="8_e2nwu"]
+[ext_resource type="Material" uid="uid://bm4h2esuqar6t" path="res://overlay_shader.tres" id="11_c7emn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ropgo"]
 frequency = 0.05
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ropgo"]
-shader = ExtResource("7_pyay8")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c7emn"]
+frequency = 0.05
 
 [node name="HexMap" type="Node2D" unique_id=869536201]
 y_sort_enabled = true
 script = ExtResource("1_tmd4b")
 height_noise = SubResource("FastNoiseLite_ropgo")
-tiles = Array[ExtResource("2_51d80")]([ExtResource("3_mbwj7"), ExtResource("4_7i2la")])
+temperature_noise = SubResource("FastNoiseLite_c7emn")
+tiles = Dictionary[int, ExtResource("2_51d80")]({
+0: ExtResource("3_s4gtt"),
+1: ExtResource("3_mbwj7"),
+2: ExtResource("4_7i2la"),
+3: ExtResource("6_8xkxa"),
+4: ExtResource("8_c7emn"),
+5: ExtResource("5_ck5le"),
+6: ExtResource("7_mie45")
+})
+tile_name = Dictionary[String, int]({
+"empty": 0,
+"forest": 6,
+"grass": 1,
+"mountain": 3,
+"rock": 4,
+"snow": 5,
+"water": 2
+})
 
 [node name="Terrain" type="TileMapLayer" parent="." unique_id=1488505661]
 y_sort_enabled = true
@@ -32,8 +55,7 @@ bob_speed = 2.0
 [node name="BorderOverlay" type="CanvasLayer" parent="." unique_id=1076359443]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="BorderOverlay" unique_id=1391346114]
-visible = false
-material = SubResource("ShaderMaterial_ropgo")
+material = ExtResource("11_c7emn")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,7 +69,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 size_2d_override_stretch = true
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Borders" type="TileMapLayer" parent="BorderOverlay/SubViewportContainer/SubViewport" unique_id=1738697396]
 y_sort_enabled = true

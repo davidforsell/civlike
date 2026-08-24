@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_lxioa")
-range = 1
+movement_range = 1
 swims = true
 texture = ExtResource("2_rm28v")
 metadata/_custom_type_script = "uid://sgswkjigeypr"

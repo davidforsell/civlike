@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_aamuv")
-terrain = 2
+id = 2
 atlas_coords = Vector2i(5, 0)
 swimmable = true
 metadata/_custom_type_script = "uid://drhr64g7tn2p"

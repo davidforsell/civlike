@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dlipuu7djidim"]
 
 [ext_resource type="Script" uid="uid://b56yg5jrpdnff" path="res://scenes/ui/button_label.gd" id="1_4cg5o"]
-[ext_resource type="Theme" uid="uid://b5nqnkdabevlt" path="res://themes/pick_colour.tres" id="1_imia1"]
+[ext_resource type="Theme" uid="uid://b5nqnkdabevlt" path="res://themes/default.tres" id="1_imia1"]
 [ext_resource type="PackedScene" uid="uid://bj3pcpku2emf6" path="res://scenes/ui/button.tscn" id="3_k1i4i"]
 [ext_resource type="Texture2D" uid="uid://ba2ohb1u7j1e7" path="res://assets/sprites/train_army.png" id="4_wxw3v"]
 

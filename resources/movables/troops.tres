@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_b3xjb")
-range = 3
+movement_range = 3
 walks = true
 texture = ExtResource("2_rwjtn")
 metadata/_custom_type_script = "uid://sgswkjigeypr"

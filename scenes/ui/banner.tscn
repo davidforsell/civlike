@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b72sdoj2n3a85"]
+
+[ext_resource type="Texture2D" uid="uid://bx61cnm16w8gv" path="res://assets/sprites/banner.png" id="1_ilb0g"]
+[ext_resource type="Script" uid="uid://hcxjt8qpqw4v" path="res://scenes/ui/banner.gd" id="2_7vqu1"]
+
+[node name="Banner" type="Node2D" unique_id=181581113]
+visible = false
+y_sort_enabled = true
+script = ExtResource("2_7vqu1")
+
+[node name="BannerSprite" type="Sprite2D" parent="." unique_id=1050985328]
+rotation = 1.5707964
+texture = ExtResource("1_ilb0g")
+offset = Vector2(2, -4)

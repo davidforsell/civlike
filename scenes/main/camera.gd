@@ -9,6 +9,8 @@ extends Camera2D
 
 @export var map: HexMap
 
+@export var hex_overlay_material: ShaderMaterial
+
 var dragging := false
 var zoom_in := false
 var zoom_out := false
@@ -32,6 +34,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		zoom_in = true
 	elif event.is_action_released("zoom_in"):
 		zoom_in = false
+	
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom_camera(zoom_speed * 0.005)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom_camera(-zoom_speed * 0.005)
+
 
 	if event.is_action_pressed("zoom_out"):
 		zoom_out = true
@@ -86,3 +95,11 @@ func zoom_camera(amount: float):
 	zoom = new_zoom
 	var new_mouse_pos := get_global_mouse_position()
 	position +=  (mouse_pos - new_mouse_pos)
+	
+	var zoom_ratio = min_zoom / zoom.x
+	
+	if zoom_ratio > 0.9:
+		var shader_value = lerp(0.0, 1.0, (zoom_ratio - 0.9) / 0.1)
+		hex_overlay_material.set_shader_parameter("zoom_value", shader_value)
+	else:
+		hex_overlay_material.set_shader_parameter("zoom_value", 0.0)

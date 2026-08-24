@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_nysgx")
+id = 5
 atlas_coords = Vector2i(6, 0)
 walkable = true
 metadata/_custom_type_script = "uid://drhr64g7tn2p"

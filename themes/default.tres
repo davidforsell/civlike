@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=4 uid="uid://b5nqnkdabevlt"]
 
-[ext_resource type="FontFile" uid="uid://bguriayplp5qj" path="res://assets/fonts/ithaca-font/Ithaca-LVB75.ttf" id="1_pylb8"]
-[ext_resource type="Texture2D" uid="uid://fovyugaq1pqx" path="res://assets/sprites/panel_background.png" id="2_3rits"]
+[ext_resource type="FontFile" uid="uid://bguriayplp5qj" path="res://assets/fonts/ithaca-font/Ithaca-LVB75.ttf" id="1_gnsgt"]
+[ext_resource type="Texture2D" uid="uid://fovyugaq1pqx" path="res://assets/sprites/panel_background.png" id="2_1fv3y"]
 
 [sub_resource type="Image" id="Image_wsfhw"]
 data = {
@@ -2056,7 +2056,7 @@ _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\">
 "
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0g5t5"]
-texture = ExtResource("2_3rits")
+texture = ExtResource("2_1fv3y")
 texture_margin_left = 2.0
 texture_margin_top = 2.0
 texture_margin_right = 2.0
@@ -2064,7 +2064,7 @@ texture_margin_bottom = 2.0
 modulate_color = Color(0.3254902, 0.3254902, 0.3254902, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rblhj"]
-texture = ExtResource("2_3rits")
+texture = ExtResource("2_1fv3y")
 texture_margin_left = 2.0
 texture_margin_top = 2.0
 texture_margin_right = 2.0
@@ -2086,19 +2086,19 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_na66n"]
-texture = ExtResource("2_3rits")
+texture = ExtResource("2_1fv3y")
 texture_margin_left = 2.0
 texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pylb8"]
-texture = ExtResource("2_3rits")
+texture = ExtResource("2_1fv3y")
 texture_margin_left = 2.0
 texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 2.0
-modulate_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
+modulate_color = Color(0.2357319, 0.23573193, 0.2357319, 1)
 
 [resource]
 ItemList/colors/font_color = Color(0.65, 0.65, 0.65, 1)
@@ -2125,7 +2125,9 @@ ItemList/styles/hovered_selected_focus = SubResource("StyleBoxFlat_jbts5")
 ItemList/styles/panel = SubResource("StyleBoxFlat_17rf7")
 ItemList/styles/selected = SubResource("StyleBoxFlat_bowre")
 ItemList/styles/selected_focus = SubResource("StyleBoxFlat_ifnnl")
-Label/fonts/font = ExtResource("1_pylb8")
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/constants/outline_size = 0
+Label/fonts/font = ExtResource("1_gnsgt")
 LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 1)
 LineEdit/colors/clear_button_color = Color(0.875, 0.875, 0.875, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
@@ -2139,7 +2141,7 @@ LineEdit/constants/caret_width = 1
 LineEdit/constants/minimum_character_width = 4
 LineEdit/constants/outline_size = 0
 LineEdit/font_sizes/font_size = 16
-LineEdit/fonts/font = ExtResource("1_pylb8")
+LineEdit/fonts/font = ExtResource("1_gnsgt")
 LineEdit/icons/clear = SubResource("DPITexture_rblhj")
 LineEdit/styles/focus = SubResource("StyleBoxTexture_0g5t5")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_rblhj")
