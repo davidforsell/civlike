@@ -15,7 +15,11 @@ var dragging := false
 var zoom_in := false
 var zoom_out := false
 
-var block_input: bool = false
+var block_input: bool = false:
+	set(new):
+		block_input = new
+		if new: print("Camera blocked")
+		else: print("Camera unblocked")
 
 var last_mouse_position := Vector2.ZERO
 
@@ -84,7 +88,17 @@ func _process(delta: float) -> void:
 	position += move_direction * pan_speed * 15 / zoom.x
 	
 	map.update_border_camera(global_position, zoom)
-		
+
+func pan_smoothly(new_global_position: Vector2) -> void:
+	var tween := create_tween()
+
+	tween.tween_property(
+		self,
+		"global_position",
+		new_global_position,
+		0.5
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
 func zoom_camera(amount: float):
 	var new_zoom := zoom + Vector2(amount, amount)
 	

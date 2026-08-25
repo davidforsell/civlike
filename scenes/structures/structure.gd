@@ -1,6 +1,14 @@
 class_name Structure
 extends Occupant
 
+static var server_next_id := 1
+var id: int:
+	set(new):
+		if is_id_set: return
+		id = new
+		is_id_set = true
+		id_set.emit()
+
 var map: HexMap
 var player_owner_id: int
 var definition: StructureDefinition
@@ -13,6 +21,9 @@ var sprite_2d: Sprite2D
 var label: StructureLabel
 
 var border: Border = Border.new()
+
+var is_id_set: bool = false
+signal id_set
 
 var hp := 0
 var defense := 0
@@ -31,6 +42,8 @@ var structure_name: String = "":
 	set(value):
 		structure_name = value
 		label.set_structure_name(value)
+		if NetworkHandler.is_server:
+			StructureInfo.create_name_updated(id, structure_name).broadcast(NetworkHandler.connection)
 
 var population: int:
 	set(value):
@@ -53,6 +66,9 @@ func _init(game_map: HexMap, my_definition: StructureDefinition, coords, p_owner
 	player_owner_id = p_owner_id
 	hp = definition.base_hp
 	defense = definition.base_defense
+	if NetworkHandler.is_server:
+		id = server_next_id
+		server_next_id += 1
 
 func take_damage(movable: Movable):
 	var dmg = movable.total_damage - defense
@@ -66,6 +82,12 @@ func take_damage(movable: Movable):
 		hp = 1
 
 func _ready() -> void:
+	if !is_id_set:
+		await id_set
+	
+	GameState.add_structure(self)
+	border.add_hex(map_position)
+	
 	sprite_2d = Sprite2D.new()
 	z_index = 3
 	label = label_scene.instantiate()
@@ -83,7 +105,9 @@ func _ready() -> void:
 	money = definition.starting_money
 	population = definition.starting_population
 	border.color_updated.connect(_on_border_color_update)
-	label.visible = false
+	
+	if NetworkHandler.is_server:
+		structure_name = TownNameGenerator.generate_name()
 
 func _on_border_color_update(new_color: Color):
 	label.set_structure_name_color(new_color)
@@ -114,12 +138,8 @@ func draw_border():
 	map.hex_borders.update_borders()
 
 func select():
-	draw_border()
-	label.visible = true
-
-func deselect():
-	pass
-	#label.visible = false
+	if NetworkHandler.is_server: return
+	GameState.player_datas[ClientNetworkGlobals.id].selected_structure = self
 
 func _on_upgrade_location_selected(coords: Vector2i):
 	if coords in border.contents:

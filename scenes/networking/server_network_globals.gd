@@ -3,6 +3,7 @@ extends Node
 signal handle_player_info(peer_id: int, player_info: PlayerInfo)
 signal handle_game_message(peer_id: int, message: GameMessage)
 signal handle_tile_selected_info(peer_id: int, tile_selected_info: TileSelectedInfo)
+signal handle_structure_info(peer_id: int, structure_info: StructureInfo)
 
 var peer_ids: Array[int]
 
@@ -31,5 +32,7 @@ func _on_server_packet(peer_id: int, data: PackedByteArray) -> void:
 			handle_player_info.emit(peer_id, PlayerInfo.create_from_data(data))
 		PacketInfo.PACKET_TYPE.TILE_SELECTED_INFO:
 			handle_tile_selected_info.emit(peer_id, TileSelectedInfo.create_from_data(data))
+		PacketInfo.PACKET_TYPE.STRUCTURE_INFO:
+			handle_structure_info.emit(peer_id, StructureInfo.create_from_data(data))
 		_:
 			push_error("Packet type with index ", data[0], " unhandled!")

@@ -61,9 +61,6 @@ const DIRECTIONS: Array[Vector2i] = [
 func _enter_tree() -> void:
 	ClientNetworkGlobals.handle_terrain_info.connect(client_handle_terrain_info)
 
-func _exit_tree() -> void:
-	pass
-
 func client_handle_terrain_info(info: TerrainInfo):
 	print("Client ", str(ClientNetworkGlobals.id), ": terrain info recieved")
 	set_map(info.coordinates, info.terrain_ids)

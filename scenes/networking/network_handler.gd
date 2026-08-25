@@ -21,6 +21,34 @@ var server_peer: ENetPacketPeer
 var connection: ENetConnection
 var is_server: bool = false
 
+var server_pid: int = -1
+
+func start_host() -> void:
+	server_pid = OS.create_instance([
+		"--headless",
+		"--server",
+		"--remote-debug",
+		"tcp://127.0.0.1:6007",
+	])
+
+	print("Started server with PID: ", server_pid)
+
+	start_client()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_cleanup_server()
+
+
+func _cleanup_server() -> void:
+	if server_pid == -1:
+		return
+
+	print("Stopping server: ", server_pid)
+	OS.kill(server_pid)
+	server_pid = -1
+
 func _process(_delta: float) -> void:
 	if connection == null: return
 	
@@ -76,11 +104,11 @@ func connected_to_server() -> void:
 	print("Successfully connected to server!")
 	on_connected_to_server.emit()
 
-func start_server(ip_address: String = "127.0.0.1", port: int = 16555) -> void:
+func start_server(ip_address: String = "0.0.0.0", port: int = 16555) -> void:
 	connection = ENetConnection.new()
 	var error: Error = connection.create_host_bound(ip_address, port)
 	if error:
-		print("Server starting failed: ", error_string(error))
+		print("Server starting failed: ", error, " ", error_string(error))
 		connection = null
 		return
 	print("Server started")

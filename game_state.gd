@@ -4,12 +4,15 @@ var player_datas: Dictionary[int, PlayerData] = {}
 var players: Dictionary[int, Player] = {}
 var player_ids: Array[int] = []
 
+var structures: Dictionary[int, Structure]
+
 var hex_map: HexMap
 
 var current_player_index := 0
 var round_number := 1
 
 signal player_died(id: int)
+signal structure_added
 
 func server_set_spawn_border(id: int, border: SpawnBorder):
 	if !NetworkHandler.is_server: return
@@ -21,12 +24,21 @@ func get_spawn_border(id: int) -> SpawnBorder:
 	return player_datas[id].spawn_border
 
 func add_player(player_data: PlayerData) -> Player:
-	var player := Player.new(player_data)
+	var player: Player
+	if !player_data.is_bot:
+		player = Player.new(player_data)
+	else:
+		player = Bot.new(player_data)
 	var id := player_data.id
 	player_ids.append(id)
 	player_datas[id] = player_data
 	players[id] = player
 	return player
+
+func add_structure(structure: Structure):
+	structures[structure.id] = structure
+	player_datas[structure.player_owner_id].owned_structures.append(structure)
+	structure_added.emit()
 
 func get_current_player_id() -> int:
 	var id := player_ids[current_player_index]

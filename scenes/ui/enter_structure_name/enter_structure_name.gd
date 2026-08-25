@@ -1,18 +1,18 @@
 class_name EnterStructurename
 extends Control
-
-signal name_submitted(name: String)
-
-@onready var name_generator: TownNameGenerator = $RandomNameGenerator
 @onready var line_edit: LineEdit = $MarginContainer/HBoxContainer/LineEdit
 
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
-	if new_text == "":
-		return
-	name_submitted.emit(new_text)
+	if NetworkHandler.is_server: return
+	if new_text == "": return
+	
+	var id = ClientNetworkGlobals.id
+	var selected_structure: Structure = GameState.player_datas[id].selected_structure
+	selected_structure.structure_name = new_text
+	StructureInfo.create_name_updated(selected_structure.id, new_text).send(NetworkHandler.server_peer)
 	visible = false
 
 
 func _on_random_pressed() -> void:
-	line_edit.text = name_generator.generate_name(5, 10)
+	line_edit.text = TownNameGenerator.generate_name(5, 10)

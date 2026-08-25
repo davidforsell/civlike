@@ -3,10 +3,12 @@ class_name PlayerData
 signal spawn_border_ready
 
 var id: int
+var name: String
 var color: Color = Color.WHITE
+var is_bot := false
 var owned_structures: Array[Structure] = []
 var owned_armies: Array[Movable] = []
-var is_bot := false
+
 var spawn_border: SpawnBorder: 
 	set(new):
 		spawn_border = new

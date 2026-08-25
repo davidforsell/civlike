@@ -42,7 +42,6 @@ func update_borders():
 	draw_all_player_borders()
 
 func draw_all_player_borders():
-	for player_id in GameState.players:
-		var player := GameState.player_datas[player_id]
-		for structure in player.owned_structures:
-			draw_border(structure.border)
+	for structure_id in GameState.structures:
+		var structure := GameState.structures[structure_id]
+		draw_border(structure.border)

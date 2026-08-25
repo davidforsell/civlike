@@ -24,10 +24,10 @@ TownNameGenerator="*uid://cbvsw4aaf2ku"
 NetworkHandler="*uid://c1oc2l1omiidc"
 ServerNetworkGlobals="*uid://ctqrf1g75erwo"
 ClientNetworkGlobals="*uid://sr4fyf72mg6l"
+StructureNetworkManager="*uid://djnmbx2dnwhx6"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [file_customization]

@@ -3,15 +3,8 @@ extends Node2D
 @onready var map: HexMap = $HexMap
 @onready var hex_borders: HexBorders = $HexBorders
 @onready var camera: MapCamera = $Camera2D
-@onready var pick_color_view = $CanvasLayer/PickColor
 
-@onready var info_label = $CanvasLayer/InfoLabel
-@onready var follow_cursor = $FollowCursor
-
-@onready var structure_buttons = $CanvasLayer/StructureButtons
-@onready var army_buttons = $CanvasLayer/ArmyButtons
-
-@onready var name_generator = $TownNameGenerator
+@onready var main_ui: MainUI = $CanvasLayer
 
 @onready var fog: ColorRect = $Fog
 
@@ -30,16 +23,14 @@ var ready_clients: Array[int]
 signal all_clients_ready
 signal colour_selected
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("select"):
-		map.on_select_pressed()
-
 func _enter_tree() -> void:
 	if NetworkHandler.is_server:
 		ServerNetworkGlobals.handle_game_message.connect(_on_server_game_message)
 		ServerNetworkGlobals.handle_tile_selected_info.connect(_on_server_tile_selected_info)
 	else:
 		ClientNetworkGlobals.handle_structure_info.connect(_on_client_structure_info)
+		ClientNetworkGlobals.handle_border_info.connect(_on_client_border_info)
+		ClientNetworkGlobals.handle_player_info.connect(_on_client_player_info)
 
 func _ready():
 	if NetworkHandler.is_server:
@@ -89,16 +80,22 @@ func start_game_server():
 	var players_created := 0
 	for id in ServerNetworkGlobals.peer_ids:
 		var player_data := PlayerData.new(id)
+		player_data.name = "Player " + str(id)
 		var player := GameState.add_player(player_data)
 		players_created += 1
 		add_child(player)
+		PlayerInfo.create_from_string(player_data.name, id).broadcast(NetworkHandler.connection)
 	
 	for i in range(players_created, PLAYER_COUNT):
-		var bot_data := PlayerData.new(NetworkHandler.available_peer_ids.pop_back())
+		var id: int = NetworkHandler.available_peer_ids.pop_back()
+		var bot_data := PlayerData.new(id)
 		bot_data.is_bot = true
+		bot_data.name = "Bot " + str(id)
 		var bot := GameState.add_player(bot_data)
 		bot.hex_map = map
+		bot.hex_selected.connect(_on_server_hex_selected)
 		add_child(bot)
+		PlayerInfo.create_from_string(bot_data.name, id).broadcast(NetworkHandler.connection)
 	
 	GameState.hex_map = map
 	map.create_hexagon_map(rings)
@@ -106,8 +103,18 @@ func start_game_server():
 	
 	TurnManager.server_start_turn()
 
-func pick_colour():
-	pick_color_view.visible = true
+func _on_client_player_info(info: PlayerInfo):
+	var id := info.player_id
+	if !id in GameState.player_ids:
+		var new_player_data := PlayerData.new(id)
+		GameState.player_datas[id] = new_player_data
+	
+	match info.type:
+		info.TYPE.COLOR:
+			GameState.player_datas[id].color = info.get_color()
+		info.TYPE.NAME:
+			GameState.player_datas[id].name = info.get_name()
+
 
 func add_ring(border: Border, radius: int, centre: Vector2i):
 	for hex in map.get_hex_ring(centre, radius):
@@ -183,9 +190,18 @@ func create_spawn_border(centre: Vector2i, radius: int) -> SpawnBorder:
 
 func _on_client_hex_selected(coords: Vector2i, player_data: PlayerData):
 	if NetworkHandler.is_server: return
-	if player_data.is_bot: return
 	if player_data.owned_structures == []:
 		_on_client_hex_spawn_selected(coords, player_data)
+	var structure := map.tile_contains_structure(coords)
+	var movable := map.tile_contains_movable(coords)
+	if structure:
+		structure.select()
+		main_ui.client_select_structure(structure)
+	if movable:
+		movable.select()
+		main_ui.client_select_movable(movable)
+	if !movable and !structure:
+		main_ui.hide_all_buttons()
 
 func _on_client_hex_spawn_selected(coords: Vector2i, player_data: PlayerData):
 	if !coords in player_data.spawn_border.contents: return # invalid spawn
@@ -198,6 +214,12 @@ func _on_server_tile_selected_info(peer_id: int, tile_selected_info: TileSelecte
 		TileSelectedInfo.TYPE.SPAWN_TILE:
 			_on_server_hex_spawn_selected(tile_selected_info.coordinates, GameState.player_datas[peer_id])
 
+func _on_server_hex_selected(coords: Vector2i, player_data: PlayerData):
+	if TurnManager.get_current_player_id() != player_data.id: return
+	if player_data.owned_structures == []:
+		# Spawn hex
+		_on_server_hex_spawn_selected(coords, player_data)
+
 func _on_server_hex_spawn_selected(coords: Vector2i, player_data: PlayerData):
 	var id := player_data.id
 	if TurnManager.get_current_player_id() != id: return
@@ -205,13 +227,22 @@ func _on_server_hex_spawn_selected(coords: Vector2i, player_data: PlayerData):
 	
 	var spawn_structure = map.add_structure(structure_definitions[0], coords, id, true)
 	spawn_structure.color = GameState.player_datas[0].color
-	StructureInfo.create(StructureInfo.TYPE.STRUCTURE_CREATED, coords, id, 0).broadcast(NetworkHandler.connection)
+	StructureInfo.create_structure_created(spawn_structure.id, coords, id, 0).broadcast(NetworkHandler.connection)
 	TurnManager.server_end_turn()
+
+func _on_client_border_info(info: BorderInfo):
+	match info.type:
+		BorderInfo.TYPE.STRUCTURE_BORDER:
+			GameState.structures[info.owner_id].border = Border.create_from_array(info.coords)
+			hex_borders.update_borders()
 
 func _on_client_structure_info(info: StructureInfo):
 	match info.type:
 		StructureInfo.TYPE.STRUCTURE_CREATED:
-			map.add_structure(structure_definitions[info.structure_resource_id], info.coords, info.owner_id)
+			var structure := map.add_structure(structure_definitions[info.structure_resource_id], info.coords, info.owner_id, true)
+			structure.id = info.structure_id
+			camera.pan_smoothly(map.tile_to_world(info.coords))
+			hex_borders.update_borders()
 
 #func _on_hex_spawn_selected(player_data: PlayerData, coords: Vector2i):
 	#var id := player_data.id
@@ -268,10 +299,6 @@ func _on_client_structure_info(info: StructureInfo):
 	#if not set_army_info_visible:
 		#army_buttons.visible = false
 
-func _on_pick_color_color_picked(color: Color) -> void:
-	GameState.player_datas[1].color = color
-	pick_color_view.visible = false
-	colour_selected.emit()
 
 func _on_name_picked(id: int, name: String) -> void:
 	var player_data := GameState.player_datas[id]
@@ -313,8 +340,8 @@ func _on_place_troop(data: PlayerData, coords: Vector2i):
 
 	map.add_unit(unit_definitions[selected_unit], coords, id)
 	if not data.is_bot:
-		follow_cursor.visible = false
-		army_buttons.visible = true
+		#follow_cursor.visible = false
+		#army_buttons.visible = true
 		var player := GameState.players[TurnManager.get_current_player_id()]
 		player.hex_selected.disconnect(_on_place_troop)
 
@@ -338,7 +365,7 @@ func _on_train_troop_button_pressed(unit_type: UnitDefinition.UnitType) -> void:
 		return
 	
 	map.highlight_cells(get_valid_troop_positions(selected_structure))
-	follow_cursor.visible = true
+	#follow_cursor.visible = true
 	var player := GameState.players[TurnManager.get_current_player_id()]
 	player.hex_selected.connect(_on_place_troop)
 

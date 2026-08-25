@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bcyy28vg407lq" path="res://scenes/ui/pick_colour/pick_color.tscn" id="12_blune"]
 [ext_resource type="FontFile" uid="uid://bguriayplp5qj" path="res://assets/fonts/ithaca-font/Ithaca-LVB75.ttf" id="13_th5th"]
 [ext_resource type="PackedScene" uid="uid://bj3pcpku2emf6" path="res://scenes/ui/button.tscn" id="14_38d3o"]
+[ext_resource type="Script" uid="uid://dxthhmsnfdq56" path="res://scenes/main/main_ui.gd" id="15_jucdw"]
 [ext_resource type="Texture2D" uid="uid://bunwwgrx3wgee" path="res://assets/sprites/info_icon.png" id="15_raeie"]
 [ext_resource type="Texture2D" uid="uid://cqkc1yqqkaers" path="res://assets/sprites/info_icon_pressed.png" id="16_nvumn"]
 [ext_resource type="Texture2D" uid="uid://ba2ohb1u7j1e7" path="res://assets/sprites/train_army.png" id="18_m4h2d"]
@@ -34,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://dy85lf771gsa8" path="res://assets/sprites/upgrade_button.png" id="25_0bhws"]
 [ext_resource type="Texture2D" uid="uid://cc3fu4dpnaex5" path="res://assets/sprites/upgrade_button_hover.png" id="26_62atk"]
 [ext_resource type="Texture2D" uid="uid://4egio5xpku0b" path="res://assets/sprites/upgrade_button_pressed.png" id="27_i7in8"]
+[ext_resource type="Script" uid="uid://dft657ah6ujmp" path="res://scenes/main/army_buttons.gd" id="28_6miv3"]
 [ext_resource type="Script" uid="uid://tlxd2hwce0a7" path="res://scenes/main/structure_name.gd" id="28_62atk"]
 [ext_resource type="Theme" uid="uid://b5nqnkdabevlt" path="res://themes/default.tres" id="28_i7in8"]
 [ext_resource type="Texture2D" uid="uid://cb8qgd2sfg0qn" path="res://assets/sprites/edit_button.png" id="30_ii537"]
@@ -87,6 +89,7 @@ movables_definitions = Array[ExtResource("3_l3cfh")]([ExtResource("4_6q06x"), Ex
 hex_borders = NodePath("../HexBorders")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933161837]
+script = ExtResource("15_jucdw")
 
 [node name="PickColor" type="Control" parent="CanvasLayer" unique_id=1838582913]
 visible = false
@@ -163,6 +166,26 @@ stretch_mode = 5
 
 [node name="InfoButton" type="TextureButton" parent="CanvasLayer/StructureButtons" unique_id=137750881]
 visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("15_raeie")
+texture_pressed = ExtResource("16_nvumn")
+texture_hover = ExtResource("23_37hlw")
+stretch_mode = 5
+
+[node name="ArmyButtons" type="HBoxContainer" parent="CanvasLayer" unique_id=959253319]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("28_6miv3")
+
+[node name="InfoButton" type="TextureButton" parent="CanvasLayer/ArmyButtons" unique_id=2018965336]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("15_raeie")
@@ -323,25 +346,6 @@ button_hovered_texture = ExtResource("31_rofvo")
 button_pressed_texture = ExtResource("32_tbnf8")
 text = "Change Name"
 
-[node name="ArmyButtons" type="HBoxContainer" parent="CanvasLayer" unique_id=959253319]
-visible = false
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="InfoButton" type="TextureButton" parent="CanvasLayer/ArmyButtons" unique_id=2018965336]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture_normal = ExtResource("15_raeie")
-texture_pressed = ExtResource("16_nvumn")
-texture_hover = ExtResource("23_37hlw")
-stretch_mode = 5
-
 [node name="ArmyPanels" type="Control" parent="CanvasLayer" unique_id=697545491]
 layout_mode = 3
 anchors_preset = 15
@@ -420,6 +424,7 @@ script = ExtResource("33_rofvo")
 [connection signal="color_picked" from="CanvasLayer/PickColor/MarginContainer/PickColor" to="." method="_on_pick_color_color_picked"]
 [connection signal="pressed" from="CanvasLayer/StructureButtons/BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StructureButtons/InfoButton" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ArmyButtons/InfoButton" to="CanvasLayer/ArmyPanels/ArmyInfoPanel" method="_on_panel_button_pressed"]
 [connection signal="enter" from="CanvasLayer/BuildPanel" to="." method="_on_panel_enter"]
 [connection signal="exit" from="CanvasLayer/BuildPanel" to="." method="_on_panel_exit"]
 [connection signal="button_pressed" from="CanvasLayer/BuildPanel/MarginContainer/PanelContainer/VBoxContainer/upgrade_button" to="." method="_structure_upgade_pressed"]
@@ -434,7 +439,6 @@ script = ExtResource("33_rofvo")
 [connection signal="exit" from="CanvasLayer/InfoPanel" to="." method="_on_panel_exit"]
 [connection signal="button_pressed" from="CanvasLayer/InfoPanel/MarginContainer/PanelContainer/VBoxContainer/ChangeName" to="." method="_on_change_name_button_pressed"]
 [connection signal="button_pressed" from="CanvasLayer/InfoPanel/MarginContainer/PanelContainer/VBoxContainer/ChangeName" to="CanvasLayer/InfoPanel" method="close"]
-[connection signal="pressed" from="CanvasLayer/ArmyButtons/InfoButton" to="CanvasLayer/ArmyPanels/ArmyInfoPanel" method="_on_panel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 
 [editable path="CanvasLayer/BuildPanel"]
